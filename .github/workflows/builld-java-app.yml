@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '21'
       - name: Creating a maven build
-        run: mvn clean deploy -B
+        run: mvn package -B
       - name: upload artifact 
         uses: actions/upload-artifact@v4
         with:
