@@ -39,5 +39,5 @@ jobs:
     steps:
       - uses: actions/first-interaction@v3
         with:
-          issue-message: |
+          issue_message: |
             Welcome to the GH training !
