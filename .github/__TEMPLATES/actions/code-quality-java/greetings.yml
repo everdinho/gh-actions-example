@@ -1,0 +1,43 @@
+# name: "Greetings"
+
+# on: [issues]
+#   pull_request:
+#     types: [ opened ]
+
+# jobs:
+#   add-label:
+#     runs-on: ubuntu-latest
+#     # With this permissions, the workflow can add labels to the PR
+#     permissions:
+#       pull-requests: write
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#       - name: Greet
+#         run: echo "Welcome"
+
+   
+name: Greetings
+
+on:
+  pull_request:
+    types:
+      - opened
+  issues:
+    types:
+      - opened
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  greeting:
+    name: Greet First-Time Contributors
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/first-interaction@v3
+        with:
+          issue-message: |
+            Welcome to the GH training !
