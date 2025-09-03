@@ -1,0 +1,33 @@
+name: build java app - composite
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - java-app/**
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    defaults:
+      run:
+        working-directory: java-app
+    outputs:
+        checkstyle-report: ${{ steps.checkstyle.outputs.checkstyle-report }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '21'
+      - name: Run Code Quality Action
+        id: checkstyle
+        uses: ./.github/actions
+        with:
+          working-directory: java-app
+          path: '**/checkstyle-result.xml'
