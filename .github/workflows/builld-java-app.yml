@@ -24,9 +24,8 @@ jobs:
       - name: Creating a maven build
         run: mvn package -B
       - name: upload artifact
-        working-directory: java-app
         uses: actions/upload-artifact@v4
         with:
-          path: demo.jar
+          path: java-app/demo.jar
         
 
